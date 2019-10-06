@@ -1,0 +1,17 @@
+{
+  "name": "movie-dictionary",
+  "version": "1.0.0",
+  "description": "Movie-dictionary",
+  "main": "index.js",
+  "dependencies": {
+    "gh-pages": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "Anji Dananto",
+  "license": "ISC",
+  "homepage": "https://anjidananto.github.io/movie-dictionary"
+}
