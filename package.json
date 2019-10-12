@@ -4,7 +4,8 @@
   "description": "Movie-dictionary",
   "main": "index.js",
   "dependencies": {
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.1.1",
+    "unirest": "^0.6.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -13,5 +14,5 @@
   "keywords": [],
   "author": "Anji Dananto",
   "license": "ISC",
-  "homepage": "https://anjidananto.github.io/movie-dictionary"
+  "homepage": "https://anji-web.github.io/movie-dictionary"
 }

@@ -1,5 +1,7 @@
 #movies img,
-#movie img {
+#movie img,
+#movieDisplay img,
+#moviesDis img {
   width: 100%;
 }
 

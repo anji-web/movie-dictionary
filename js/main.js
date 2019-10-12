@@ -1,5 +1,9 @@
 $(document).ready(() => {
   $("#searchForm").on("submit", e => {
+    // window.location = "searchMovies.html";
+    $("#movieDisplay").html("");
+    $(".h3").html("");
+
     let searchText = $("#searchText").val();
     getMovies(searchText);
     e.preventDefault();
@@ -27,6 +31,7 @@ function getMovies(searchText) {
       });
 
       $("#movie").html(output);
+      $("#searchText").val("");
     })
     .catch(err => {
       console.log(err);
@@ -84,5 +89,126 @@ function getMovie() {
 }
 
 function getMovieDisp() {
-  axios.get();
+  axios
+    .get(
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=0ccd87f544c7e54dafba594584acc692&language=en-US&page=1"
+    )
+    .then(response => {
+      console.log(response);
+      let movieDisp = response.data.results;
+      let outputMovie = "";
+
+      $.each(movieDisp, (index, movieDis) => {
+        outputMovie += `
+            <div class="col-md-3">
+              <img src="https://image.tmdb.org/t/p/w500/${movieDis.poster_path}
+              " class="card-img mb-3" alt="...">
+            </div>
+
+            <div class="col-md-3">
+              <div class="card-body">
+                <h5 class="card-title">${movieDis.original_title}</h5>
+                <p class="card-text">${movieDis.overview}</p>
+                <p class="card-text">Released : ${movieDis.release_date}</p>
+                <a onclick="idMovie('${movieDis.id}')" class="btn btn-primary" href="#">Movie Description</a>
+            </div>
+                
+              </div>
+            </div>
+        `;
+      });
+      $("#movieDisplay").html(outputMovie);
+    });
+}
+
+function getMovieUpcoming() {
+  axios
+    .get(
+      "https://api.themoviedb.org/3/movie/popular?api_key=0ccd87f544c7e54dafba594584acc692&language=en-US&page=1"
+    )
+    .then(response => {
+      console.log(response);
+      let movieDisp = response.data.results;
+      let outputMovie = "";
+
+      $.each(movieDisp, (index, movieDis) => {
+        outputMovie += `
+            <div class="col-md-3">
+              <img src="https://image.tmdb.org/t/p/w500/${movieDis.poster_path}
+              " class="card-img mb-3" alt="...">
+            </div>
+
+            <div class="col-md-3">
+              <div class="card-body">
+                <h5 class="card-title">${movieDis.original_title}</h5>
+                <p class="card-text">${movieDis.overview}</p>
+                <p class="card-text">Released : ${movieDis.release_date}</p>
+                <a onclick="idMovie('${movieDis.id}')" class="btn btn-primary" href="#">Movie Description</a>
+            </div>
+                
+              </div>
+            </div>
+        `;
+      });
+      $("#movieDisplay").html(outputMovie);
+    });
+}
+
+function idMovie(id) {
+  sessionStorage.setItem("movie_id", id);
+  window.location = "movieDisplay.html";
+  return false;
+}
+
+function getMovieDis() {
+  let movId = sessionStorage.getItem("movie_id");
+  axios
+    .get(
+      "https://api.themoviedb.org/3/movie/" +
+        movId +
+        "?api_key=0ccd87f544c7e54dafba594584acc692&language=en-US"
+    )
+    .then(response => {
+      console.log(response);
+      let movieId = response.data;
+      let outputDesc = `
+      <div class="row">
+      <div class="col-md-4">
+        <img src="https://image.tmdb.org/t/p/w300/${
+          movieId.poster_path
+        }" class="thumbnail">
+      </div>
+      <div class="col-md-8">
+      <h3 class="text-center">${movieId.original_title}</h3>
+       <ul class="list-group">
+       <li class="list-group-item"><strong>Genre :</strong> ${
+         movieId.genres[0]["name"]
+       }</li>
+    
+       <li class="list-group-item"><strong>Released :</strong> ${
+         movieId.release_date
+       }</li>
+
+       <li class="list-group-item"><strong>Status :</strong> ${movieId.status}
+        </li>
+      
+       </ul>
+      </div>
+      </div>
+ 
+      <div class="row mt-3">
+       <div class="well">
+         <h3>Plot</h3>
+         ${movieId.overview}
+         <hr>
+         <a href="https://www.imdb.com/title/${
+           movieId.imdb_id
+         }" target="_blank" class="btn btn-primary">View IMDB</a>
+         <a href='upcoming.html' class="btn btn-success">Back to Search </a>
+       </div>
+      </div>
+      
+      `;
+      $("#moviesDis").html(outputDesc);
+    });
 }
