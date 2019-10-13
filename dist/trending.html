@@ -37,22 +37,24 @@
             <a class="nav-link" href="trending.html">Trending</a>
           </li>
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="tvShow.html"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Tv Show
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tvSeasons.html">Tv Popular</a>
-              <a class="dropdown-item" href="tvEpisode.html">Tv Episodes</a>
-              
-          </li>
+                <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle"
+                          href="tvShow.html"
+                          id="navbarDropdown"
+                          role="button"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Tv Show
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="tvSeasons.html">Tv Popular</a>
+                          <a class="dropdown-item" href="tvEpisode.html">Tv Episodes</a>
+                          
+                      </li>
+          
         </ul>
       </div>
     </nav>
@@ -72,11 +74,10 @@
     </div>
 
     <div class="container text-center mb-3">
-      <h3 class="h3">Top rated</h3>
+      <h3 class="h3">Trending Movies</h3>
     </div>
     <hr class="text-info" />
     <hr />
-
     <div class="container">
       <div class="row" id="movie"></div>
     </div>
@@ -92,7 +93,6 @@
         </div>
       </div>
     </div>
-
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -101,8 +101,7 @@
     <script src="../js/main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      getMovieDisp();
-      getMovieDis();
+      trendingMovie();
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
